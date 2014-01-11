@@ -291,10 +291,12 @@ def vCsv(stanjeLige,st_tekem,kat,tek):
                             podpicja+=1
                             if podpicja!=3:
                                     cas+=':'
-                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'+k+';'+cas+';'+str(stanjeLige[k][naziv][st_tekem][2])+';'+str(stanjeLige[k][naziv][st_tekem][1]))
+                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'
+                                +k+';'+cas+';'+str(stanjeLige[k][naziv][st_tekem][2])+';'+str(stanjeLige[k][naziv][st_tekem][1]))
                     else:
                         #print("1")
-                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'+k+';'+stanjeLige[k][naziv][st_tekem][0]+';'+''+';'+'')
+                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'+k+';'
+                                +stanjeLige[k][naziv][st_tekem][0]+';'+''+';'+'')
                     if stanjeLige[k][naziv].get('sestevek',None)!=None:
                         for i in range(1,st_tekem +1):
                             if stanjeLige[k][naziv].get(i,None)!=None:
@@ -317,7 +319,8 @@ def vCsv(stanjeLige,st_tekem,kat,tek):
                             podpicja+=1
                             if podpicja!=3:
                                 cas+=':'
-                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+''+';'+k+';'+str(cas)+';'+str(stanjeLige[k][naziv][st_tekem][2])+';'+str(stanjeLige[k][naziv][st_tekem][1]))
+                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+''+';'+k+';'+str(cas)+';'+str(stanjeLige[k][naziv][st_tekem][2])
+                                +';'+str(stanjeLige[k][naziv][st_tekem][1]))
                     else:
                         f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+''+';'+k+';'+stanjeLige[k][naziv][st_tekem][0]+';'+''+';'+'')
                     if stanjeLige[k][naziv].get('sestevek',None)!=None:
