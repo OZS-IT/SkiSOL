@@ -29,12 +29,12 @@ def izracunLige(rezultatiTekme,st_tekme,stanjeLige,IP,kategorija,tek):
             #Sestavljamo seznam z časi in točkami.
             seznamCasov=[]
             for naziv in rezultatiTekme[kat].keys():
-                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv)[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ"]:
+                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv)[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
                     seznamCasov.append((rezultatiTekme[kat][naziv][0])*3600+(rezultatiTekme[kat][naziv][1])*60+rezultatiTekme[kat][naziv][2])
                     
             seznamCasov.sort()
             for naziv in rezultatiTekme[kat].keys():
-                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ"]:
+                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
                     RT=(rezultatiTekme[kat][naziv][0])*3600+(rezultatiTekme[kat][naziv][1])*60+rezultatiTekme[kat][naziv][2]
                     for i in range(len(seznamCasov)):
                         if seznamCasov[i]==RT:
@@ -47,7 +47,7 @@ def izracunLige(rezultatiTekme,st_tekme,stanjeLige,IP,kategorija,tek):
                         stanjeLige[kat][naziv][st_tekme]=[rezultatiTekme[kat][naziv],'-']
                 vsota_=0
                 k=0
-                if rezultatiTekme[kat][naziv]not in ["dns","dnf","mp","DISQ"] and tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme:
+                if rezultatiTekme[kat][naziv]not in ["dns","dnf","mp","DISQ","DNF","DNS","MP"] and tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme:
                     for i,j in stanjeLige[kat][naziv].items():
                         if i not in ['sestevek','tekmaRegistracije','povprecje','klub','ime','priimek',0] and j[1]!='-' and j[1]>0:
                             vsota_+=round(j[1])
@@ -100,6 +100,8 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                 colnum=0
                 a=True
                 #print(row)
+                klubb = False
+                klub = False
                 for col in row[0].split(';'):
                     if colnum>=len(header):
                         break
@@ -110,7 +112,7 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                     elif header[colnum]=='Short':
                         kategorija=col
                     elif header[colnum]=='Time':
-                        if col==''or col =='\"\"' or col in ["dns","dnf","mp","DISQ"]:
+                        if col==''or col =='\"\"' or col in ["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
                             cas1=False
                         else:
                             cas1=col
@@ -126,6 +128,8 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                                 cas1=str(int(ggz[0])//60)+':'+str(int(ggz[0])%60)+':'+ggz[1]
                     elif header[colnum]=='Cl.name':
                         klub=col
+                    elif header[colnum]=='City':
+                        klubb = col
                     elif header[colnum]=='Classifier':
                         ok=col
                     else:
@@ -133,7 +137,7 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                     colnum+=1
                 #print(row[0].split(';'))
                 ok=int(ok)
-                classs={3:"mp",2:"dns",1:"dnf",4:"DISQ",0:True}
+                classs={3:"mp",2:"dnf",1:"dns",4:"DISQ",0:True}
                 
                 if cas1==False and ok not in [1,2,3,4]:
                     cas="mp"
@@ -156,11 +160,18 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                         cas[1]=cas[0]
                         cas[0]=str(0)
                     cas=[int(cas[0]),int(cas[1]),int(cas[2])]
-                if not ok and cas not in["dns","dnf","mp","DISQ"]:
+                if not ok and cas not in["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
                     for i in range(2,0,-1):
                         if cas[i]>=60:
                             cas[i-1]=cas[i-1]+cas[i]//60
                             cas[i]=cas[i]%60                       
+
+                if not (klubb == False) and klub == False:
+                    klub = klubb
+                elif klubb == False and klub == False:
+                    print("Ni vrstice za klub")
+                    break
+
                 a=''
                 for i in klub:
                     if i.isalpha() or i==' ':
