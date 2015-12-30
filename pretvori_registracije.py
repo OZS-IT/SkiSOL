@@ -1,6 +1,6 @@
 from urllib.request import urlopen
-with open("Registracije/registracije2a.csv","r",encoding="utf-8") as f:
-    with open("Registracije/registracije2b.csv","w",encoding="utf-8") as g:
+with open("Registracije/registracije1a.csv","r",encoding="utf-8") as f:
+    with open("Registracije/registracije1.csv","w",encoding="utf-8") as g:
         a = f.read()
         b = a.split("\n")
         ozs = urlopen("http://www.orientacijska-zveza.si/index.php?id=59")
@@ -11,7 +11,7 @@ with open("Registracije/registracije2a.csv","r",encoding="utf-8") as f:
             c = i.split(";")
             k = 0
             if len(c)>1:
-                if not ((c[1]+" "+c[2]+"<sup>") in stran):
+                if not ((c[1]+" "+c[2]+"<sup>") in stran) or c[1] in ["Mariya"]:
                     while k < 5:
                         stri += c[k]+";"
                         k += 1
