@@ -4,8 +4,8 @@ def skrajsaj(string):
     if string:
         return string[1:-1]
     return string
-kategorije = {1:{"A" : ["M17", "M20", "M21E", "M40", "Ž21E", "MB", "Ž14", "ŽB"],
-                 "B" : ["M14", "Ž17"]},
+kategorije = {1:{"A" : ["M17", "M20", "M21E", "M40", "Ž21E", "MB", "Ž14", "ŽB","M14", "Ž17"],
+                 "B" : []},
               2 : {"A" : ["M20", "M21E"],
                    "B" : ["Ž21E", "M40", "M17"],
                    "C" : ["M14", "MB", "Ž14", "Ž17", "ŽB"]}}

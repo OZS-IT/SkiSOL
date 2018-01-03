@@ -1,4 +1,4 @@
-def sumniki(niz):
+﻿def sumniki(niz):
     #Vrne enak niz, brez sumnikov.
     sumniki={'š':'s','č':'c','ž':'z','Š':'S','Č':'C','Ž':'Z','ć':'c','Ć':'C','ö':'o','ä':'a','Ä':'A','Ö':'O'}
     a=''
@@ -21,7 +21,7 @@ def tocke(i):
         return 1
     return t[i]
 def izracunLige(rezultatiTekme,st_tekme,stanjeLige,IP,kategorija,tek):
-    #'st_tekme' je št SSOL(npr. pri SSOL2, je to 2).
+    #'st_tekme' je št SOL(npr. pri SOL2, je to 2).
     #IP je vrednost tekme(1.2 pomeni, da je tekmo vredna 20 % več).
     #stanjeLige mora biti enako stanjeLige[kategorija]
     for kat in kategorija:
@@ -29,12 +29,12 @@ def izracunLige(rezultatiTekme,st_tekme,stanjeLige,IP,kategorija,tek):
             #Sestavljamo seznam z časi in točkami.
             seznamCasov=[]
             for naziv in rezultatiTekme[kat].keys():
-                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv)[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
+                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv)[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ","wrongKat"]:
                     seznamCasov.append((rezultatiTekme[kat][naziv][0])*3600+(rezultatiTekme[kat][naziv][1])*60+rezultatiTekme[kat][naziv][2])
                     
             seznamCasov.sort()
             for naziv in rezultatiTekme[kat].keys():
-                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
+                if  tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme and rezultatiTekme[kat][naziv] not in ["dns","dnf","mp","DISQ","wrongKat"]:
                     RT=(rezultatiTekme[kat][naziv][0])*3600+(rezultatiTekme[kat][naziv][1])*60+rezultatiTekme[kat][naziv][2]
                     for i in range(len(seznamCasov)):
                         if seznamCasov[i]==RT:
@@ -43,13 +43,15 @@ def izracunLige(rezultatiTekme,st_tekme,stanjeLige,IP,kategorija,tek):
                     stanjeLige[kat][naziv][st_tekme]=[rezultatiTekme[kat][naziv],tocke(mesto-1),mesto]
 
                 elif tek.get(naziv,[0])[0]==kat  and tek.get(naziv,[0])[3]<=st_tekme:
-                    if rezultatiTekme[kat][naziv]!="dns":
-                        stanjeLige[kat][naziv][st_tekme]=[rezultatiTekme[kat][naziv],'-']
+                    if rezultatiTekme[kat][naziv] == "wrongKat":
+                        stanjeLige[kat][naziv][st_tekme]=[rezultatiTekme[kat][naziv],'*', float("inf")]
+                    elif rezultatiTekme[kat][naziv]!="dns":
+                        stanjeLige[kat][naziv][st_tekme]=[rezultatiTekme[kat][naziv],'-', float("inf")] #dodal sem float(inf), da lahko primerjam kdo je večkrat premagal druge z <
                 vsota_=0
                 k=0
-                if rezultatiTekme[kat][naziv]not in ["dns","dnf","mp","DISQ","DNF","DNS","MP"] and tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme:
+                if rezultatiTekme[kat][naziv]not in ["dns","dnf","mp","DISQ","wrongKat"] and tek.get(naziv,[0])[0]==kat and tek.get(naziv,[0])[3]<=st_tekme:
                     for i,j in stanjeLige[kat][naziv].items():
-                        if i not in ['sestevek','tekmaRegistracije','povprecje','klub','ime','priimek',0] and j[1]!='-' and j[1]>0:
+                        if i not in ['sestevek','tekmaRegistracije','povprecje','klub','ime','priimek',0] and j[1]!='-' and j[1]!='*' and j[1]>0:
                             vsota_+=round(j[1])
                             k+=1
                         else:
@@ -61,7 +63,7 @@ def izracunLige(rezultatiTekme,st_tekme,stanjeLige,IP,kategorija,tek):
             for naziv in stanjeLige[kat].keys():
                 seznam=[]
                 for i,j in stanjeLige[kat][naziv].items():
-                    if i in [k for k in range(1,12)] and j[1]!='-' and j[1]>0:#največ 11 lig je lahko
+                    if i in [k for k in range(1,12)] and j[1]!='-' and j[1]!='*' and j[1]>0:#največ 11 lig je lahko
                         seznam.append(j[1])
                 seznam.sort()
                 seznam=seznam[::-1]
@@ -100,8 +102,6 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                 colnum=0
                 a=True
                 #print(row)
-                klubb = False
-                klub = False
                 for col in row[0].split(';'):
                     if colnum>=len(header):
                         break
@@ -112,7 +112,7 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                     elif header[colnum]=='Short':
                         kategorija=col
                     elif header[colnum]=='Time':
-                        if col==''or col =='\"\"' or col in ["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
+                        if col==''or col =='\"\"' or col in ["dns","dnf","mp","DISQ"]:
                             cas1=False
                         else:
                             cas1=col
@@ -126,10 +126,8 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                             else:
                                 ggz=cas1.split(':')
                                 cas1=str(int(ggz[0])//60)+':'+str(int(ggz[0])%60)+':'+ggz[1]
-                    elif header[colnum]=='Cl.name':
+                    elif header[colnum]=="City":
                         klub=col
-                    elif header[colnum]=='City':
-                        klubb = col
                     elif header[colnum]=='Classifier':
                         ok=col
                     else:
@@ -137,7 +135,7 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                     colnum+=1
                 #print(row[0].split(';'))
                 ok=int(ok)
-                classs={3:"mp",2:"dnf",1:"dns",4:"DISQ",0:True}
+                classs={3:"mp",1:"dns",2:"dnf",4:"DISQ",0:True}
                 
                 if cas1==False and ok not in [1,2,3,4]:
                     cas="mp"
@@ -160,18 +158,11 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                         cas[1]=cas[0]
                         cas[0]=str(0)
                     cas=[int(cas[0]),int(cas[1]),int(cas[2])]
-                if not ok and cas not in["dns","dnf","mp","DISQ","DNF","DNS","MP"]:
+                if not ok and cas not in["dns","dnf","mp","DISQ"]:
                     for i in range(2,0,-1):
                         if cas[i]>=60:
                             cas[i-1]=cas[i-1]+cas[i]//60
                             cas[i]=cas[i]%60                       
-
-                if not (klubb == False) and klub == False:
-                    klub = klubb
-                elif klubb == False and klub == False:
-                    print("Ni vrstice za klub")
-                    break
-
                 a=''
                 for i in klub:
                     if i.isalpha() or i==' ':
@@ -228,7 +219,7 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                     ime1='Jernej'
                 elif ime1=='Ivo'and priimek1=='Kette':
                     priimek1='Kete'
-                a={'scommendrisio':'SCOM Mendriso','rodjezerskizmaj':'RJZ Velenje','ind':'ind.','ssdgaja':'SSD Gaja','okkomenda':'OK Komenda','pdajdovscina':'PD Ajdovščina','okazimut':'OK Azimut', 'okbrezice':'OK Brežice','okperkmandeljc':'OK Perkmandeljc','okpolaris':'OK Polaris','okslovenjgradec':'OK Slovenj Gradec','okslovenskekonjice':'OK Slovenske Konjice','oktivoli':'OK Tivoli','oktrzin':'OK Trzin','rjzvelenje':'RJZ Velenje','sok':'ŠOK'}
+                a={'mokmariborskiok':'Mariborski OK','kamniskiokkok': 'Kamniški OK','scommendrisio':'SCOM Mendriso','rodjezerskizmaj':'RJZ Velenje','ind':'ind.','ssdgaja':'SSD Gaja','okkomenda':'OK Komenda','pdajdovscina':'PD Ajdovščina','orientacijskiklubazimutokazimut':'OK Azimut', 'okbrezice':'OK Brežice','okperkmandeljc':'OK Perkmandeljc','okpolaris':'OK Polaris','okslovenjgradec':'OK Slovenj Gradec','okslovenskekonjice':'OK Slovenske Konjice','oktivoli':'OK Tivoli','oktrzin':'OK Trzin','rjzvelenje':'RJZ Velenje','sok':'ŠOK'}
                 if presledki(sumniki(klub1).lower()) in a.keys():
                     klub1=a[presledki(sumniki(klub1).lower())]
                 else:
@@ -249,10 +240,18 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                     kategorija="M"+kategorija[1:]
                 elif kategorija[0]=="D":
                     kategorija="Ž"+kategorija[1:]
+                elif kategorija[:2]=="MW":
+                    kategorija="MŽ"+kategorija[2:]
+                elif kategorija[:2]=="MD":
+                    kategorija="MŽ"+kategorija[2:]
+                elif kategorija[:2]=="HW":
+                    kategorija="MŽ"+kategorija[2:]
+                elif kategorija[:2]=="HD":
+                    kategorija="MŽ"+kategorija[2:]
                 if kategorija in kat:
                     if naziv not in stanjeLige[kategorija].keys():
                         if tek.get(naziv,[0])[0]!=0  and tek.get(naziv)[3]<=st_lige:
-                            rezultat[tek[naziv][0]][naziv]="mp"
+                            rezultat[tek[naziv][0]][naziv]="wrongKat"
                         #stanjeLige[kategorija][naziv]={0:0,'ime':ime,'priimek':priimek,'klub':klub1}
                     elif stanjeLige[kategorija][naziv].get('klub',1)==(1 or '' or 'ind.' or ' '):
                         if klub1==(' 'or''or'ind'):
@@ -263,11 +262,64 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                         rezultat[kategorija][naziv]=cas
                 else:
                     if naziv in tek.keys():
-                        rezultat[tek[naziv][0]][naziv]="mp"
+                        rezultat[tek[naziv][0]][naziv]="wrongKat"
 
             rownum+=1
     return rezultat
 
+def popraviEnakoTock(h, stanjeLigeKat, stTekem):
+    #Če ima več ljudi enako točk jih razvrsti, kot je v pravilniku
+    print("Tekma: ",stTekem,"\n\n\n\n\n")
+
+    #najdemo vse ljudi z enako točkami
+    def najdiEnake(h):
+        d = {}
+        k = 0
+        for sestevek,povprecje,naziv in h:
+            d[sestevek] = d.get(sestevek,[])+[(naziv,k)]
+            k += 1
+        return [j for i,j in d.items() if len(j) > 1 and i > 0]
+    enaki = najdiEnake(h) # seznam seznamov ljudi z enakimi točkami
+    #print(enaki)
+    for i in enaki:
+        #računamo število zmag nad vsemi ostalimi
+        zmage = [0] * len(i)
+        for st in range(1, stTekem+1):
+            mesto = [0] * len(i)
+            for j in range(len(i)):
+                try: #niso vsi na vseh tekmah
+                    if stanjeLigeKat[i[j][0]][st][1] != "*":
+                        mesto[j] = stanjeLigeKat[i[j][0]][st][2]
+                except:
+                    pass
+            for j in range(len(i)):
+                zmage[j] += len([mest for mest in mesto if (mest > mesto[j] and not mest == 0 and not mesto[j] == 0)]) 
+                #print(zmage)
+            #print("------")
+        zmage = [(zmage[j],i[j][1],i[j][0]) for j in range(len(zmage))]
+        zmage.sort(key = lambda x: -x[0])
+        #print(zmage)
+        indeksi = [k[1] for k in zmage]
+        if len(set([zmaga[0] for zmaga in zmage])) == len(zmage):
+            #Če imajo tudi po tem kriteriju tekmovalci enak izkupiček, gledamo mesta po vrsti
+            noviEnaki = najdiEnake(zmage)
+            for skupina in noviEnaki:
+                mesta = [([stanjeLigeKat[k[0]][st][2] if not (stanjeLigeKat[k[0]].get(st) == None) else float("inf") for st in range(1, stTekem+1)],k[1]) for k in skupina]
+                for bla in range(len(mesta)):
+                    seznamcek = mesta[bla][0]
+                    seznamcek.sort()
+                    mesta[bla] = (seznamcek,mesta[bla][1])
+                mesta.sort(key = lambda x: x[0] if x[0] else float("inf")) #če ni tekmoval dobi inf
+                indeksi1 = [k[1] for k in mesta]
+                #zmanjkalo kriterijev, kakor je, je mesta popravi ročno (v html-ju, jaz jih itak ne pišem)
+                zmage[min(indeksi1):max(indeksi1)+1] = [zmage[bla] for bla in indeksi1]
+                if not len(set([tuple(mesto[0]) for mesto in mesta])) == len(mesta):
+                    print("Tekmovalc(a)i " + ", ".join([zmage[bla][2] for bla in indeksi1]) + " se ujemajo v vseh kriterijih.")
+        #kar se je dalo popraviti smo
+        h[min(indeksi):max(indeksi)+1] = [h[k[1]] for k in zmage]
+        #print(h)
+    return h
+                
 
 def vCsv(stanjeLige,st_tekem,kat,tek):
     with open('./Stanja racunana/SSOL'+str(st_tekem)+'.csv','w+',encoding='utf-8') as f:
@@ -283,15 +335,15 @@ def vCsv(stanjeLige,st_tekem,kat,tek):
             for naziv in stanjeLige[k].keys():
                 if stanjeLige[k][naziv].get('sestevek',None)!=None:
                     h.append((stanjeLige[k][naziv]['sestevek'],stanjeLige[k][naziv]['povprecje'],naziv))
-            h.sort()
-            h=h[::-1]
+            h.sort(key = lambda x:  1/x[0] if x[0] else float("inf"))
+            h = popraviEnakoTock(h, stanjeLige[k], st_tekem)
             for t,z,naziv in h:
                 if stanjeLige[k][naziv].get('klub',None)!=None:
                     if stanjeLige[k][naziv].get('sestevek',None)==None:
                             pass
                     elif stanjeLige[k][naziv].get(st_tekem,None)==None:
                         f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'+k+';'+''+';'+''+';'+'')
-                    elif stanjeLige[k][naziv][st_tekem][0] not in ["dns","dnf","mp","DISQ"]:
+                    elif stanjeLige[k][naziv][st_tekem][0] not in ["dns","dnf","mp","DISQ","wrongKat"]:
                         cas=''
                         podpicja=0
                         for j in range(3):
@@ -302,12 +354,10 @@ def vCsv(stanjeLige,st_tekem,kat,tek):
                             podpicja+=1
                             if podpicja!=3:
                                     cas+=':'
-                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'
-                                +k+';'+cas+';'+str(stanjeLige[k][naziv][st_tekem][2])+';'+str(stanjeLige[k][naziv][st_tekem][1]))
+                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'+k+';'+cas+';'+str(stanjeLige[k][naziv][st_tekem][2])+';'+str(stanjeLige[k][naziv][st_tekem][1]))
                     else:
                         #print("1")
-                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'+k+';'
-                                +stanjeLige[k][naziv][st_tekem][0]+';'+''+';'+'')
+                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+str(stanjeLige[k][naziv]['klub'])+';'+k+';'+stanjeLige[k][naziv][st_tekem][0]+';'+''+';'+'')
                     if stanjeLige[k][naziv].get('sestevek',None)!=None:
                         for i in range(1,st_tekem +1):
                             if stanjeLige[k][naziv].get(i,None)!=None:
@@ -321,7 +371,7 @@ def vCsv(stanjeLige,st_tekem,kat,tek):
                             pass
                     elif stanjeLige[k][naziv].get(st_tekem,None)==None:
                         f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+''+';'+k+';'+''+';'+''+';'+'')
-                    elif stanjeLige[k][naziv][st_tekem][0] not in ["dns","dnf","mp","DISQ"]:
+                    elif stanjeLige[k][naziv][st_tekem][0] not in ["dns","dnf","mp","DISQ","wrongKat"]:
                         cas=''
                         podpicja=0
                         for j in range(3):
@@ -330,8 +380,7 @@ def vCsv(stanjeLige,st_tekem,kat,tek):
                             podpicja+=1
                             if podpicja!=3:
                                 cas+=':'
-                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+''+';'+k+';'+str(cas)+';'+str(stanjeLige[k][naziv][st_tekem][2])
-                                +';'+str(stanjeLige[k][naziv][st_tekem][1]))
+                        f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+''+';'+k+';'+str(cas)+';'+str(stanjeLige[k][naziv][st_tekem][2])+';'+str(stanjeLige[k][naziv][st_tekem][1]))
                     else:
                         f.write(stanjeLige[k][naziv]['priimek']+';'+stanjeLige[k][naziv]['ime']+';'+''+';'+k+';'+stanjeLige[k][naziv][st_tekem][0]+';'+''+';'+'')
                     if stanjeLige[k][naziv].get('sestevek',None)!=None:
