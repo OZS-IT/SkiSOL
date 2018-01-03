@@ -168,7 +168,7 @@ def rezultati(st_lige,stanjeLige,kat,tek):
                     if i.isalpha() or i==' ':
                         a+=i
                 klub=a
-                
+
                 a=''
                 b=0
                 for i in ime:
