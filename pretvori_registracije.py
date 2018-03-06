@@ -1,6 +1,6 @@
 from urllib.request import urlopen
-with open("Registracije/registracije4.csvreg","r",encoding="utf-8") as f:
-    with open("Registracije/registracije4.csv","w",encoding="utf-8") as g:
+with open("Registracije/registracije5.csvreg","r",encoding="utf-8") as f:
+    with open("Registracije/registracije5.csv","w",encoding="utf-8") as g:
         a = f.read()
         b = a.split("\n")
         ozs = urlopen("http://www.orientacijska-zveza.si/registracija-ski-o.html")

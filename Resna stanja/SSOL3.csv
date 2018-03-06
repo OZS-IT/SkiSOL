@@ -1,5 +1,5 @@
 Surname;First name;Cl.name;Class;Time;Pl;Points;SSOL1;SSOL2;SSOL3;Sum;Average;ID
-Gregorič;Nik;PD Ajdovščina;M17;0:43:04;1;25;25;25;25;50;25;725
+Gregorič;Nik;PD Ajdovščina;M17;0:43:04;1;25;25;25;25;75;25;725
 Tozan;Uroš;PD Ajdovščina;M17;;;;20;20;;40;20;903
 Slejko;Žan;PD Ajdovščina;M17;0:43:17;2;20;;;20;20;20;963
 Žvanut;Tilen;PD Ajdovščina;M17;0:59:51;3;15;;;15;15;15;812
@@ -10,7 +10,7 @@ Petrovič;Gašper;OK Polaris;M20;dnf;;;25;25;-;50;25;71
 Škarabot;Matej;OK Polaris;M20;0:48:02;1;25;20;;25;45;22;132
 Ravnikar;Žan;OK Komenda;M20;;;;;;;0;0;397
 Blaž;Matic;OK Komenda;M20;;;;;;;0;0;520
-Petrovič;Blaž;OK Polaris;M21E;0:44:49;2;20;25;25;20;50;25;70
+Petrovič;Blaž;OK Polaris;M21E;0:44:49;2;20;25;25;20;70;23;70
 Rojc;Iztok;OK Polaris;M21E;0:44:37;1;25;15;;25;40;20;65
 Petrovič;Dušan;OK Polaris;M21E;0:48:06;4;12;;20;12;32;16;69
 Štanfel;Matjaž;OK Azimut;M21E;;;;20;;;20;20;769
@@ -32,9 +32,9 @@ Borštnik;Andrej;OK Tivoli;M21E;;;;;;;0;0;25
 Borštnik;Aljaž;OK Tivoli;M21E;;;;;;;0;0;26
 Kračun;Rajko;Kamniški OK;M21E;;;;;;;0;0;133
 Andrejc;David;OK Slovenj Gradec;M21E;;;;;;;0;0;289
-Čufer;Stanko;PD Ajdovščina;M40;0:32:08;1;25;20;25;25;50;25;336
+Čufer;Stanko;PD Ajdovščina;M40;0:32:08;1;25;20;25;25;70;23;336
 Škarabot;Miha;OK Polaris;M40;0:37:27;2;20;25;;20;45;22;54
-Foški;Valter;OK Polaris;M40;0:50:32;5;10;15;20;10;35;18;58
+Foški;Valter;OK Polaris;M40;0:50:32;5;10;15;20;10;45;15;58
 Šalamun;Miro;OK Polaris;M40;0:38:12;3;15;;;15;15;15;2
 Eržen;Boris;ŠOK;M40;0:40:40;4;12;;;12;12;12;559
 Jazbar;Jožko;OK Azimut;M40;;;;;;;0;0;106
@@ -46,6 +46,7 @@ Kenda;Klemen;OK Azimut;MB;0:28:46;1;25;;;25;25;25;1
 Valič;Jakob;PD Ajdovščina;MB;1:02:49;3;15;;-;15;15;15;947
 Šalamun;Jan;OK Polaris;MB;;;;;;;0;0;150
 Sladič;Roman;ŠOK;MB;;;;;;;0;0;39
+Gregorc;Urban;PD Ajdovščina;MB;;;;;;;0;0;859
 Rodman;Ema;PD Ajdovščina;Ž14;0:35:49;1;25;;;25;25;25;770
 Stres;Tinkara;PD Ajdovščina;Ž14;0:37:45;2;20;;;20;20;20;964
 Gregorčič;Ema;PD Ajdovščina;Ž14;0:39:43;3;15;;;15;15;15;965
@@ -69,6 +70,7 @@ Osterman;Eneja;OK Polaris;Ž21E;;;;;;;0;0;66
 Foški;Brina;OK Polaris;Ž21E;;;;;;;0;0;128
 Foški;Tajda;OK Polaris;Ž21E;;;;;;;0;0;129
 Anderluh;Marija;OK Polaris;Ž21E;;;;;;;0;0;400
+Bernik;Jerca;ŠOK;Ž21E;;;;;;;0;0;22
 Škarabot;Alenka;OK Polaris;ŽB;0:45:51;1;25;25;;25;50;25;462
 Kovač;Marija;PD Ajdovščina;ŽB;0:50:23;2;20;;25;20;45;22;352
 Šalamun;Ana;OK Polaris;ŽB;;;;;;;0;0;332

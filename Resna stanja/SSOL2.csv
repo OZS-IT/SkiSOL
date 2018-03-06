@@ -1,9 +1,11 @@
 Surname;First name;Cl.name;Class;Time;Pl;Points;SSOL1;SSOL2;Sum;Average;ID
 Gregorič;Nik;PD Ajdovščina;M17;0:14:45;1;25;25;25;50;25;725
 Tozan;Uroš;PD Ajdovščina;M17;0:15:20;2;20;20;20;40;20;903
-Vetrih;Samo;PD Ajdovščina;M17;;;;;;0;0;899
-Žvanut;Tilen;PD Ajdovščina;M17;;;;;;0;0;812
 Krkoč;Urban;PD Ajdovščina;M17;;;;;;0;0;724
+Žvanut;Tilen;PD Ajdovščina;M17;;;;;;0;0;812
+Vetrih;Samo;PD Ajdovščina;M17;;;;;;0;0;899
+Andrejc;Žiga;OK Slovenj Gradec;M17;;;;;;0;0;470
+Slejko;Žan;PD Ajdovščina;M17;;;;;;0;0;963
 Petrovič;Gašper;OK Polaris;M20;0:25:02;1;25;25;25;50;25;71
 Škarabot;Matej;OK Polaris;M20;;;;20;;20;20;132
 Ravnikar;Žan;OK Komenda;M20;;;;;;0;0;397
@@ -11,48 +13,58 @@ Blaž;Matic;OK Komenda;M20;;;;;;0;0;520
 Petrovič;Blaž;OK Polaris;M21E;0:18:24;1;25;25;25;50;25;70
 Štanfel;Matjaž;OK Azimut;M21E;;;;20;;20;20;769
 Petrovič;Dušan;OK Polaris;M21E;0:23:36;2;20;;20;20;20;69
-Cimerman;Andrej;OK Polaris;M21E;0:25:39;3;15;;15;15;15;444
 Rojc;Iztok;OK Polaris;M21E;;;;15;;15;15;65
-Pobežin;Robert;OK Polaris;M21E;;;;;;0;0;223
-Andrejc;Gregor;OK Slovenj Gradec;M21E;;;;;;0;0;214
+Cimerman;Andrej;OK Polaris;M21E;0:25:39;3;15;;15;15;15;444
 Tušar;Peter;OK Azimut;M21E;;;;;;0;0;419
-Kračun;Rajko;Kamniški OK;M21E;;;;;;0;0;133
-Kmetič;Sandi;OK Polaris;M21E;;;;;;0;0;67
-Borštnik;Aljaž;OK Tivoli;M21E;;;;;;0;0;26
 Hvala;Gregor;OK Azimut;M21E;;;;;;0;0;424
-Miheljak;Blaž;OK Slovenj Gradec;M21E;;;;;;0;0;283
+Kmetič;Sandi;OK Polaris;M21E;;;;;;0;0;67
 Anderluh;Gregor;OK Polaris;M21E;;;;;;0;0;155
+Pobežin;Robert;OK Polaris;M21E;;;;;;0;0;223
 Golja;Elio;OK Polaris;M21E;;;;;;0;0;664
+Andrejc;Gregor;OK Slovenj Gradec;M21E;;;;;;0;0;214
+Miheljak;Blaž;OK Slovenj Gradec;M21E;;;;;;0;0;283
 Borštnik;Andrej;OK Tivoli;M21E;;;;;;0;0;25
+Borštnik;Aljaž;OK Tivoli;M21E;;;;;;0;0;26
+Kračun;Rajko;Kamniški OK;M21E;;;;;;0;0;133
+Kölner;Blaž;OK Komenda;M21E;;;;;;0;0;556
+Raj;Gregor;OK Slovenj Gradec;M21E;;;;;;0;0;282
+Andrejc;David;OK Slovenj Gradec;M21E;;;;;;0;0;289
+Marot;Blaž;OK Slovenj Gradec;M21E;;;;;;0;0;290
+Pistor;Matej;OK Slovenj Gradec;M21E;;;;;;0;0;414
+Dudić;Marko;OK Slovenj Gradec;M21E;;;;;;0;0;467
 Čufer;Stanko;PD Ajdovščina;M40;0:25:41;1;25;20;25;45;22;336
 Foški;Valter;OK Polaris;M40;0:30:27;2;20;15;20;35;18;58
 Škarabot;Miha;OK Polaris;M40;;;;25;;25;25;54
-Borštnik;Aleš;OK Tivoli;M40;;;;;;0;0;24
-Šalamun;Miro;OK Polaris;M40;;;;;;0;0;2
 Jazbar;Jožko;OK Azimut;M40;;;;;;0;0;106
-Eržen;Boris;ŠOK;M40;;;;;;0;0;559
 Poljanšek;Aleš;OK Azimut;M40;;;;;;0;0;176
+Šalamun;Miro;OK Polaris;M40;;;;;;0;0;2
+Borštnik;Aleš;OK Tivoli;M40;;;;;;0;0;24
+Eržen;Boris;ŠOK;M40;;;;;;0;0;559
 Kete;Ivo;PD Ajdovščina;M40;;;;;;0;0;412
 Bončina;Igor;OK Azimut;MB;;;;25;;25;25;98
-Sladič;Roman;ŠOK;MB;;;;;;0;0;39
 Kenda;Klemen;OK Azimut;MB;;;;;;0;0;1
-Valič;Jakob;PD Ajdovščina;MB;dnf;;;;-;0;0;947
 Šalamun;Jan;OK Polaris;MB;;;;;;0;0;150
+Sladič;Roman;ŠOK;MB;;;;;;0;0;39
+Valič;Jakob;PD Ajdovščina;MB;dnf;;;;-;0;0;947
+Gregorc;Urban;PD Ajdovščina;MB;;;;;;0;0;859
 Škarabot;Anja;OK Polaris;Ž17;;;;25;;25;25;399
 Durn;Sara;PD Ajdovščina;Ž17;0:15:26;1;25;;25;25;25;782
-Anderluh;Katarina Eva;OK Polaris;Ž17;;;;;;0;0;445
 Tušar;Teja;OK Azimut;Ž17;;;;;;0;0;735
-Črnigoj;Nina;PD Ajdovščina;Ž21E;;;;25;;25;25;905
+Anderluh;Katarina Eva;OK Polaris;Ž17;;;;;;0;0;445
 Pribaković Borštnik;Ana;OK Tivoli;Ž21E;0:34:11;1;25;;25;25;25;23
-Foški;Tajda;OK Polaris;Ž21E;;;;;;0;0;129
+Črnigoj;Nina;PD Ajdovščina;Ž21E;;;;25;;25;25;905
+Tomažin;Urša;OK Azimut;Ž21E;;;;;;0;0;117
 Jeram;Nuša;OK Azimut;Ž21E;;;;;;0;0;421
+Foški;Mojca;OK Polaris;Ž21E;;;;;;0;0;59
 Osterman;Eneja;OK Polaris;Ž21E;;;;;;0;0;66
 Foški;Brina;OK Polaris;Ž21E;;;;;;0;0;128
+Foški;Tajda;OK Polaris;Ž21E;;;;;;0;0;129
+Anderluh;Marija;OK Polaris;Ž21E;;;;;;0;0;400
 Flerin Drevenšek;Mojca;Kamniški OK;Ž21E;;;;;;0;0;82
 Flerin Drevenšek;Suzana;Kamniški OK;Ž21E;;;;;;0;0;316
-Tomažin;Urša;OK Azimut;Ž21E;;;;;;0;0;117
-Foški;Mojca;OK Polaris;Ž21E;;;;;;0;0;59
-Anderluh;Marija;OK Polaris;Ž21E;;;;;;0;0;400
+Hacin Kölner;Irena;OK Komenda;Ž21E;;;;;;0;0;630
+Strasser;Špela;MOK;Ž21E;;;;;;0;0;741
+Bernik;Jerca;ŠOK;Ž21E;;;;;;0;0;22
 Škarabot;Alenka;OK Polaris;ŽB;;;;25;;25;25;462
 Kovač;Marija;PD Ajdovščina;ŽB;0:27:48;1;25;;25;25;25;352
 Šalamun;Ana;OK Polaris;ŽB;;;;;;0;0;332
